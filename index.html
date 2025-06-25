@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIYO - Wow, Such Doge 2.0!</title>
+    <link rel="icon" href="https://wsrv.nl/?w=25&h=25&default=1&url=https%3A%2F%2Fassets.geckoterminal.com%2Fb6i853iyfg1m73j8ropwbw08f0df&output=webp" type="image/webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="floating-element bone-1" aria-hidden="true">🦴</div>
+    <div class="floating-element bone-2" aria-hidden="true">🦴</div>
+    <div class="floating-element bone-3" aria-hidden="true">🦴</div>
+    <div class="floating-element bone-4" aria-hidden="true">🦴</div>
+    <div class="floating-element bone-5" aria-hidden="true">🦴</div>
+    <div class="floating-element bone-6" aria-hidden="true">🦴</div>
+
+    <main>
+        <div class="container">
+            <figure>
+                <div class="image-container">
+                    <img src="https://dd.dexscreener.com/ds-data/tokens/solana/EBCqxfSMVSJPDGFLcf2yAfQoeLJRD1z8VbEUemZSbonk.png?size=lg&key=c547cc" alt="SHIYO Token Image" class="main-image">
+                </div>
+                <figcaption>
+                    <h1>SHIYO</h1>
+                    <p class="subtitle">Wow. Such Doge 2.0. Much Solana.</p>
+                </figcaption>
+            </figure>
+            
+            <div class="ca-box">
+                <span id="ca">EBCqxfSMVSJPDGFLcf2yAfQoeLJRD1z8VbEUemZSbonk</span>
+                <button onclick="copyCA(this)" class="button copy-button">
+                    <span class="icon-wrapper">
+                        <i class="fas fa-copy copy-icon"></i>
+                        <i class="fas fa-check check-icon"></i>
+                    </span>
+                </button>
+            </div>
+
+            <div class="buttons-group">
+                <a href="https://x.com/i/communities/1935733382929101277" target="_blank" class="button community-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>Join us</span>
+                </a>
+                <a href="https://t.me/SHIYO_PORTAL" target="_blank" class="button community-link">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+                <button id="open-modal-button" class="button">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Watch Video</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="video-modal" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal-content">
+            <button id="close-modal-button" class="modal-close" aria-label="Close">&times;</button>
+            <div id="modal-video-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Sans+MS&family=Poppins:wght@400;700&display=swap");
+
+:root {
+  --color-primary: #ffc107; /* Amber */
+  --color-secondary: #d2691e; /* Chocolate */
+  --color-background: #fffde7; /* Cream */
+  --color-text: #5a3a22; /* Dark Brown */
+  --color-twitter: #1da1f2;
+  --color-video: #ff4500; /* Orangered */
+}
+
+:root.dark-theme {
+  --color-primary: #8a2be2; /* Blue Violet */
+  --color-secondary: #4b0082; /* Indigo */
+  --color-background: #1a1a2e; /* Dark Blue */
+  --color-text: #e0e0e0; /* Light Gray */
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Disable scrolling */
+  font-family: "Poppins", sans-serif;
+  position: relative; /* Keep relative for floating elements */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🐾</text></svg>")
+      16 0,
+    auto;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    var(--color-background),
+    var(--color-background)
+  ); /* Use background variable */
+  color: var(--color-text);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--color-text);
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* --- Animations --- */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+}
+
+@keyframes fall {
+  from {
+    top: -10%;
+    transform: rotate(0deg);
+  }
+  to {
+    top: 110%;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-coin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(1080deg);
+  } /* 3 full spins */
+}
+
+@keyframes pop-heart {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1) translateY(-30px);
+    opacity: 0;
+  }
+}
+
+.floating-element {
+  position: absolute;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  opacity: 0.4;
+  animation: float 5s ease-in-out infinite;
+  z-index: 0;
+}
+.bone-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+.bone-2 {
+  top: 20%;
+  right: 8%;
+  animation-delay: -2s;
+}
+.bone-3 {
+  bottom: 15%;
+  left: 12%;
+  animation-delay: -4s;
+}
+.bone-4 {
+  bottom: 10%;
+  right: 10%;
+  animation-delay: -1s;
+}
+.bone-5 {
+  top: 50%;
+  left: 20%;
+  animation-delay: -3s;
+}
+.bone-6 {
+  top: 60%;
+  right: 25%;
+  animation-delay: -5s;
+}
+
+.falling-bone {
+  position: absolute;
+  font-size: 4rem;
+  color: var(--color-secondary);
+  opacity: 0.6;
+  z-index: 0;
+  animation-name: fall;
+  animation-timing-function: linear;
+}
+
+/* --- Main Container --- */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vh, 1.5rem);
+  padding: 2rem;
+  z-index: 1;
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+.image-container {
+  position: relative;
+}
+
+.main-image {
+  width: clamp(120px, 25vmin, 250px);
+  height: clamp(120px, 25vmin, 250px);
+  border-radius: 50%;
+  border: 6px solid var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary); /* Используем переменную для адаптации к теме */
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  -webkit-box-reflect: below 5px
+    linear-gradient(transparent, transparent, #0004);
+}
+
+.main-image:hover {
+  transform: scale(1.05) rotate(0deg); /* Simplified hover to not conflict with petting */
+}
+
+.main-image.petted {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.main-image.is-spinning {
+  animation: spin-coin 1.5s ease-out;
+}
+
+h1 {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: var(--color-secondary);
+  font-size: clamp(2rem, 8vw, 5rem);
+  margin: 0;
+  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
+    2px 2px 0 #fff, 4px 4px 5px rgba(0, 0, 0, 0.3),
+    0 0 20px var(--color-primary);
+}
+
+@keyframes dance {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(-5deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-10px) rotate(5deg); }
+}
+
+h1.easter-egg-h1 {
+  font-size: calc(clamp(2rem, 8vw, 5rem) * 3); /* Увеличиваем в 3 раза */
+  animation: dance 0.5s ease-in-out infinite; /* Анимация танца */
+}
+
+p.subtitle {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  margin: 0;
+}
+
+.ca-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px dashed var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  transition: box-shadow 0.3s ease-in-out; /* Добавляем плавный переход для box-shadow */
+}
+
+.ca-box:hover {
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.7); /* Свечение при наведении */
+}
+
+:root.dark-theme .ca-box {
+  background-color: #2a2a3e; /* Dark background for CA box in dark mode */
+}
+
+:root.dark-theme .ca-box:hover {
+  box-shadow: 0 0 15px var(--color-primary); /* Свечение для темной темы */
+}
+
+#ca {
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+  word-break: break-all;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  transition: transform 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.button:hover,
+.copy-button:hover {
+  transform: scale(1.1);
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🐾</text></svg>")
+      16 0,
+    auto;
+}
+
+.copy-button {
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+.copy-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.2);
+}
+.copy-button .icon-wrapper {
+  position: relative;
+  width: 1.2em; /* Увеличиваем размер для лучшего центрирования */
+  height: 1.2em; /* Увеличиваем размер для лучшего центрирования */
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out; /* Ускоряем анимацию */
+  display: flex; /* Используем flexbox для центрирования */
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-button .icon-wrapper .copy-icon,
+.copy-button .icon-wrapper .check-icon {
+  position: absolute;
+  backface-visibility: hidden;
+  font-size: 1em; /* Убедимся, что размер иконок соответствует размеру обертки */
+  line-height: 1; /* Убираем лишние отступы */
+}
+
+.copy-button .icon-wrapper .check-icon {
+  transform: rotateY(180deg); /* Изначально скрыта */
+}
+
+.copy-button .icon-wrapper.copied {
+  transform: rotateY(180deg);
+}
+
+.copy-button .icon-wrapper.copied .check-icon {
+  color: #28a745; /* Green color for checkmark */
+}
+
+.copy-button.copied {
+  background-color: transparent;
+}
+.community-link {
+  background-color: var(--color-twitter);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.community-link:hover {
+  box-shadow: 0 0 15px var(--color-twitter);
+}
+
+#open-modal-button {
+  background-color: var(--color-video);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+#open-modal-button:hover {
+  box-shadow: 0 0 15px var(--color-video);
+}
+
+/* --- Modal --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  position: relative;
+  padding: 1rem;
+  background: black;
+  border-radius: 8px;
+}
+.modal-close {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+#modal-video-container {
+  min-width: 325px;
+  min-height: 570px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart {
+  position: absolute;
+  font-size: 2rem;
+  color: red;
+  animation: pop-heart 0.8s ease-out forwards;
+  pointer-events: none;
+}
